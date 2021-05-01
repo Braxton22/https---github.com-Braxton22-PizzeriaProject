@@ -1,0 +1,53 @@
+{% extends "Pizzeria/base.html" %}
+
+{% block header %}
+<h2>{{ pizza }} Pizza</h2>
+{% endblock header %}
+
+{% block content %}
+
+<img src="{{ pizza.imageurl }}">
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            {{ topping.date_added|date:'M d, Y H:i' }}
+            <small>
+                <ul>
+                    {% for topping in toppings %}
+                    <li>
+                        <p>{{ topping.name|linebreaks }} </p>
+                    </li>
+                    {% empty %}
+                    <li> There are no toppings on this pizza.</li>
+                    {% endfor %}
+                </ul>
+            </small>
+        </h3>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            {{ comment.date_added|date:'M d, Y H:i' }}
+            <small>
+                <ul>
+                    {% for comment in comments %}
+                    <li>
+                        <p>{{ comment.text|linebreaks }} </p>
+                    </li>
+                    {% empty %}
+                    <li>There are no comments on this pizza</li>
+                    {% endfor %}
+                </ul>
+            </small>
+        </h3>
+    </div>
+</div>
+
+<p>
+    <a href="{% url 'Pizzeria:new_comment' pizza.id %}">Add a new comment</a>
+</p>
+
+{% endblock content %}

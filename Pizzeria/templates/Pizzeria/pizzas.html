@@ -1,0 +1,26 @@
+{% extends "Pizzeria/base.html" %}
+
+{% block header %}
+<h2>Pizzas</h2>
+{% endblock header %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            <small>
+                <ul>
+                    {% for pizza in pizzas %}
+                    <li><a href="{% url 'Pizzeria:pizza' pizza.id %}">{{ pizza }}</a>
+                    </li>
+                    {% empty %}
+                    <li>No pizzas have been added yet.</li>
+                    {% endfor %}
+                </ul>
+            </small>
+        </h3>
+    </div>
+</div> <!-- panel -->
+
+{% endblock content %}
